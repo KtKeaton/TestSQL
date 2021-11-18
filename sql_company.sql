@@ -74,6 +74,12 @@ INSERT INTO `client` VALUES(402, "旺來", "0900123123");
 INSERT INTO `client` VALUES(403, "露西", "0900123123");
 INSERT INTO `client` VALUES(404, "艾瑞克", "0900123123");
 
+INSERT INTO `work_with` VALUES(206, 400, 70000);
+INSERT INTO `work_with` VALUES(207, 401, 24000);
+INSERT INTO `work_with` VALUES(208, 402, 9800);
+INSERT INTO `work_with` VALUES(209, 403, 24000);
+INSERT INTO `work_with` VALUES(210, 404, 87940);
+
 -- 演練
 -- 取得所有員工資料
 SELECT * FROM `employee`;
@@ -90,8 +96,8 @@ SELECT * FROM `employee` order by `salary` DESC LIMIT 3;
 -- 取得所有員工名字
 SELECT `name` FROM `employee`;
 
--- 聚合函數
--- 取得員工人數alter
+-- 聚合函數 aggregate function
+-- 取得員工人數
 SELECT COUNT(*) FROM `employee`;
 
 -- 取得所有出生於 1970-01-01 之後的女性員工人數
@@ -113,7 +119,7 @@ SELECT MIN(`salary`) FROM `employee`;
 -- 原本這樣寫
 SELECT `salary` FROM `employee` ORDER BY `salary` LIMIT 1;
 
--- 萬用字元 
+-- 萬用字元 wildcards
  -- % 代表多字元
  -- _ 代表單一字元
 -- 取得電話號碼尾數是335的客戶
@@ -124,3 +130,23 @@ SELECT * FROM `client` WHERE `client_name` LIKE '艾%';
 
 -- 取得生日在12月的員工
 SELECT * FROM `employee` WHERE `birth_date` LIKE '_____12%';
+
+-- 聯集 union
+-- 員工名字 union 客戶名字
+SELECT `name` FROM `employee`
+UNION
+SELECT `client_name` FROM `client`;
+
+-- 員工id + 員工名字 union 客戶id + 客戶名字alter
+SELECT `emp_id`, `name` FROM `employee`
+UNION
+SELECT `client_id`, `client_name` FROM `client`;
+
+-- 員工薪水 union 銷售金額
+SELECT `salary` FROM `employee`
+UNION
+SELECT `total_sales` FROM `work_with`
+
+
+
+
