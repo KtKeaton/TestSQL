@@ -145,8 +145,14 @@ SELECT `client_id`, `client_name` FROM `client`;
 -- 員工薪水 union 銷售金額
 SELECT `salary` FROM `employee`
 UNION
-SELECT `total_sales` FROM `work_with`
+SELECT `total_sales` FROM `work_with`;
 
+-- 連結 join
+-- 取得部門經理的名字
+SELECT * FROM `employee`
+JOIN `branch`
+ON `emp_id` = `manager_id`;
 
-
+SELECT * FROM `employee` LEFT JOIN `branch`
+ON `emp_id` = `manager_id`;
 
