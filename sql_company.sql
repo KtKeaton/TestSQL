@@ -156,3 +156,14 @@ ON `emp_id` = `manager_id`;
 SELECT * FROM `employee` LEFT JOIN `branch`
 ON `emp_id` = `manager_id`;
 
+-- 子查詢 subquery
+-- 找出研發部門經理的名字
+SELECT `name` FROM `employee` WHERE `emp_id` = (
+SELECT `manager_id` FROM `branch` WHERE `branch_name` = "研發"
+);
+
+-- 找出對單一客戶銷售額逾50000元之員工
+SELECT `name` FROM `employee` WHERE `emp_id` IN (
+SELECT `emp_id` FROM `work_with` WHERE `total_sales` > 50000
+);
+
